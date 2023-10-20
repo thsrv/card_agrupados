@@ -1,0 +1,76 @@
+type: custom:stack-in-card
+cards:
+  - type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 90% 10%
+    cards:
+      - type: custom:fold-entity-row
+        open: false
+        head:
+          type: custom:mushroom-light-card
+          entity: light.lavanderia_luzes
+          style: |
+            ha-card {
+               box-shadow: none;
+            }
+        group_config:
+          show_brightness_control: true
+          show_color_temp_control: true
+          show_color_control: true
+          use_light_color: true
+          hide_state: true
+          collapsible_controls: true
+        entities:
+          - type: custom:mushroom-light-card
+            entity: light.lavanderia_luminaria_1_1
+            name: Luminária 1 Topo
+          - type: custom:mushroom-light-card
+            entity: light.lavanderia_luminaria_1_2
+            name: Luminária 1 Inferior
+          - type: custom:mushroom-light-card
+            entity: light.lavanderia_luminaria_2_1
+            name: Luminária 2 Topo
+          - type: custom:mushroom-light-card
+            entity: light.lavanderia_luminaria_2_2
+            name: Luminária 2 Inferior
+          - type: custom:mushroom-light-card
+            entity: light.lavanderia_luminaria_3_1
+            name: Luminária 3 Topo
+          - type: custom:mushroom-light-card
+            entity: light.lavanderia_luminaria_3_2
+            name: Luminária 3 Inferior
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: action
+                icon_color: orange
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  data: {}
+                  target:
+                    entity_id: scene.lavanderia_quente
+                icon: mdi:lightbulb
+                card_mod:
+                  style: |
+                    ha-card {
+                      --chip-background: rgba(var(--rgb-orange), 0.2);
+                    } 
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: action
+                icon_color: white
+                icon: mdi:lightbulb
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  data: {}
+                  target:
+                    entity_id: scene.lavanderia_fria
+                card_mod:
+                  style: |
+                    ha-card {
+                      --chip-background: rgba(var(--rgb-white), 0.2);
+                    }
